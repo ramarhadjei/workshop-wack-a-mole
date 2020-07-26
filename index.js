@@ -1,55 +1,27 @@
-// let score = 0;
+let score = 0;
+​
+var scoreDisplay = document.getElementById('score');
+console.log("This is our score element", scoreDisplay);
 
-// //Var holes = document.getElementsByClassName('hole');
-// //console.log
-// var scoreDisplay = document.getElementById('score');
-
-// console.log(scoreDisplay);
-// console.log('line', score);
-
-const mole = document.querySelectorAll('mole')
-const timeLeft = document.querySelector('#time-left')
-
-let result = 0
-let currentTime = timeLeft.textContent
-
-function randomHole(){
-    randomHole.forEach(className => {
-        className.clasList.remove('mole')
-    })
-
-let randomPosition = hole[Math.floor(Math.random()*9)]
-randomPosition.clasList.add('mole')
-
-//asssign the id of the randomPositon to hitPosition for us to use later
-hitPosition = randomPosition.randomPosition
-}
-
-hole.forEach(id => {
-    id.addEventListener('mouseup', () => {
-        if(id.id === hitPoistion){
-            result = result + 1
-            Score.textContent = result
-        }
-    })
-
-})
-{
-    function moveMole()
-    let timeId = null
-    timeId = setInterval(randomHole, 1000)
-}
-
-moveMole()
-
-
-function countDown(){
-    currentTime --
-    timeLeft.textContent = currentTime
-
-    if(currenttime === 0 ) {
-        clearInterval(timerId)
-        alert('GAME OVER! Your final score'  + result)
+var holes =document.getElementsByClassName('hole');
+​
+//console.log(holes[0]);
+​
+setInterval(function(){
+    var randomHoleIndex = Math.floor(Math.random()* holes.length);
+    holes[randomHoleIndex].classList.toggle('mole');
+//console.log("this os our random Index;", randomHoleIndex);
+}, 200)
+​
+var gameArea = document.getElementById('whack-a-mole');
+//console.log(gameArea);
+​
+gameArea.addEventListener('click', function(clickEvent){
+    if(clickEvent.target.matches('.mole')){
+        //we hit a mole!
+        clickEvent.target.classList.remove('mole');
+        score++;
+        scoreDisplay.innerText = score;
+        
     }
-}
-let timerId = setInterval(countDown, 1000)
+})
